@@ -7,6 +7,6 @@ const productSchema = Schema({
   isOK: {type: Boolean},
 });
 
-const Lesson = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
-module.exports = Lesson;
+module.exports = Product;

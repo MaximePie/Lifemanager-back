@@ -8,7 +8,7 @@ const io = server.io;
  * @param response
  */
 module.exports.index = async function(request, response) {
-  const products = await Product.find({});
+  const products = await Product.find({}).sort({_id: -1});
   return response.json(products);
 };
 

@@ -6,6 +6,7 @@ const socketIo = require("socket.io");
 const mongoose = require('mongoose');
 const {url} = require('./database/databaseService');
 const bodyParser = require("body-parser");
+const updateTasks = require('./crons/tasks');
 
 
 const port = process.env.PORT || 4001;
@@ -40,7 +41,17 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(port, () => {
+  const CronJob = require('cron').CronJob;
+  const job = new CronJob(
+    '0 1 * * *',
+    updateTasks,
+    null,
+    true,
+    'America/Los_Angeles'
+  );
+  console.log(`Listening on port ${port}`)
+});
 
 
 

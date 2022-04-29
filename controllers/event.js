@@ -33,8 +33,8 @@ module.exports.delete = async function (request, response) {
 };
 
 module.exports.update = async function (request, response) {
-  const {_id, event} = request.body;
-  const updatedEvent = await Event.findByIdAndUpdate(_id, event);
+  const {event} = request.body;
+  const updatedEvent = await Event.findByIdAndUpdate(event._id, event);
   await updatedEvent.save();
   io.emit("events list updated");
   return response.json("Updated !");

@@ -8,7 +8,7 @@ async function updateTasks (request, response) {
     const {lastTimeDone, repetitionDelay} = task;
     const nextDutyTime = moment(lastTimeDone).add(repetitionDelay, 'd');
     if (moment().isSameOrAfter(nextDutyTime, "h")) {
-      console.log("Updated");
+      console.log("Updated task : ");
       console.log(task);
       task.isOK = false;
       task.save();

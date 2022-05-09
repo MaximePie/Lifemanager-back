@@ -50,6 +50,8 @@ server.listen(port, () => {
     true,
     'America/Los_Angeles'
   );
+  console.log("Running cron ");
+  console.log(job);
   console.log(`Listening on port ${port}`)
 });
 

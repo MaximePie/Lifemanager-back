@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon server"
+    "start": "node server",
+    "start:dev": "nodemon server"
   },
   "dependencies": {
     "body-parser": "^1.19.1",

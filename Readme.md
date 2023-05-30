@@ -8,5 +8,8 @@
     2. `npm install`
     3. `npm start:dev` (for nodemon) or `npm start` (for production)
 
-The project is currently running on Heroku, not cyclic, because it doesn't use socket io. :(
+~The project is currently running on Heroku, not cyclic, because it doesn't use socket io. :(~
+
+... YUP ! The project is DEFINITELY NOT running on Heroku because this is too EXPANSIVE!
+Trying to figure out how to do it with Cyclic.
 

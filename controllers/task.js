@@ -1,7 +1,6 @@
 const Task = require('../model/task');
 const server = require('../server');
 const moment = require("moment");
-const io = server.io;
 
 module.exports.create = async function (request, response) {
   const {name, isRepetitive, delay} = request.body;
@@ -11,7 +10,6 @@ module.exports.create = async function (request, response) {
     isRepetitive,
     repetitionDelay: delay
   });
-  io.emit("tasks list updated");
   return response.json("Created!");
 };
 
@@ -22,6 +20,7 @@ module.exports.create = async function (request, response) {
  */
 module.exports.index = async function(request, response) {
   const tasks = await Task.find({}).sort({_id: -1});
+  console.log("C'est en route roh la la");
   return response.json(tasks);
 };
 
@@ -30,7 +29,6 @@ module.exports.index = async function(request, response) {
 module.exports.delete = async function (request, response) {
   const {_id} = request.body;
   await Task.findByIdAndDelete(_id);
-  io.emit("tasks list updated");
   return response.json("Deleted!");
 };
 
@@ -42,6 +40,5 @@ module.exports.updateCheckStatus = async function (request, response) {
     task.lastTimeDone = moment();
   }
   await task.save();
-  io.emit("tasks list updated");
   return response.json("Checked!");
 };

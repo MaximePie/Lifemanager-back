@@ -1,6 +1,5 @@
 const Event = require('../model/event');
 const server = require('../server');
-const io = server.io;
 
 module.exports.create = async function (request, response) {
   const {participants, event, details} = request.body;
@@ -9,7 +8,6 @@ module.exports.create = async function (request, response) {
     event,
     details,
   });
-  io.emit("events list updated");
   return response.json("Created!");
 };
 
@@ -28,7 +26,6 @@ module.exports.index = async function(request, response) {
 module.exports.delete = async function (request, response) {
   const {_id} = request.body;
   await Event.findByIdAndDelete(_id);
-  io.emit("events list updated");
   return response.json("Deleted!");
 };
 
@@ -36,7 +33,6 @@ module.exports.update = async function (request, response) {
   const {event} = request.body;
   const updatedEvent = await Event.findByIdAndUpdate(event._id, event);
   await updatedEvent.save();
-  io.emit("events list updated");
   return response.json("Updated !");
 };
 

@@ -4,6 +4,9 @@ const productsController = require('../controllers/product');
 const tasksController = require('../controllers/task');
 const eventsController = require('../controllers/event');
 
+router.get('/', () => {
+    console.log("Haha")
+});
 router.get('/products', productsController.index);
 router.get('/products/deleteAll', productsController.deleteAll);
 router.get('/products/uncheckAll', productsController.uncheckAll);
